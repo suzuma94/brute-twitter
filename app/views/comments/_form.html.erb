@@ -1,0 +1,10 @@
+<%= form_with model: [@tweet, @tweet.comments.build ] do |form| %>
+    <div>
+        <%= form.text_area :body%>
+        <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

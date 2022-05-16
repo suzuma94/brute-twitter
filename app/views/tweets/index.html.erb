@@ -5,20 +5,31 @@
   <%= render "form", tweet: @tweet %>
 <% end %>
 <div id="tweets">
+  <p> Tweets: </p>
   <% @tweets.each do |tweet| %>
     <%= tweet.user.name %><br>
     @<%= tweet.user.username %><br>
     <%= tweet.body %><br>
+    <p>comments:</p>
+    <% tweet.comments.each do |comment| %>
+      <%= comment.body %><br>
+    <% end %>
     
-     <% if user_signed_in? %>
-        <% if current_user.email == tweet.user.email%>
+    <% if user_signed_in?%>
+      <%= link_to "Comment", tweet_path(tweet) %><br>
+    <% end %>
+        
+        <% if user_signed_in? %>
+          <% if current_user.email == tweet.user.email %>
           <%= link_to "Edit Tweet", edit_tweet_path(tweet)%>
           <%= link_to "Delete Tweet", tweet_path(tweet), data: {
               turbo_method: :delete,
               turbo_confirm: "Are you sure" } %><br>
+          <% end %>
         <% end %>
-    <% end %>
+    
   <% end %>
+  <%= render @tweet.comments %>
 </div>
 
 

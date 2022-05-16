@@ -1,10 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @tweet %>
+<%= @tweet.body %>
 
 <div>
-  <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %> |
-  <%= link_to "Back to tweets", tweets_path %>
+  <%= link_to "Back to tweets", root_path%>
+</div>
 
-  <%= button_to "Destroy this tweet", @tweet, method: :delete %>
+<div>
+  <%= render "comments/form" %>
 </div>

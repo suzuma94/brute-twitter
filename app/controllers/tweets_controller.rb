@@ -5,6 +5,8 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
     @tweet = Tweet.new
+    
+    @comments = Comment.all
   end
 
   # GET /tweets/1 or /tweets/1.json
