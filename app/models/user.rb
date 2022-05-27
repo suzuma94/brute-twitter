@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3}
   has_many :tweets
   has_many :comments
+  has_many :friend_requests
+  has_many :requests, foreign_key: 'request_id', class_name: 'FriendRequest'
 end

@@ -5,8 +5,8 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
     @tweet = Tweet.new
-    
-    @comments = Comment.all
+    @users = User.all
+    @list = current_user.friend_requests.map { |fr| fr.request_id } if user_signed_in?
   end
 
   # GET /tweets/1 or /tweets/1.json
@@ -56,6 +56,7 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1 or /tweets/1.json
   def destroy
     @tweet = Tweet.find(params[:id])
+    @tweet.comments.destroy_all
     @tweet.destroy
 
     respond_to do |format|

@@ -1,8 +1,5 @@
 class CommentsController < ApplicationController
     def create
-        10.times do
-            puts comment_params
-        end
         @tweet = Tweet.find(params[:tweet_id])
         @comment = @tweet.comments.create(comment_params)
         

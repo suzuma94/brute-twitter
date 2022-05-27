@@ -4,4 +4,5 @@ Rails.application.routes.draw do
     resources :comments
   end
   root "tweets#index"
+  resources :friend_requests
 end
